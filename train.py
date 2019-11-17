@@ -34,9 +34,9 @@ def main():
     parser.add_argument("--targeted_attack", action='store_true')
     args = parser.parse_args()
 
-    print(args)
-    print("cross:"+args.use_cross_entropy_loss)
-    print("target:"+args.targeted_attack)
+    #print(args)
+    #print("cross:"+args.use_cross_entropy_loss)
+    #print("target:"+args.targeted_attack)
     
     ## load dataset
     train_batch_gnr, train_set = get_dataset_batch(ds_name='train')
@@ -67,6 +67,19 @@ def main():
     merged = tf.summary.merge_all()
     train_writer = tf.summary.FileWriter(os.path.join(config.log_dir, 'tf_log', 'train'), tf.get_default_graph())
 
+    print("~~~~~~~~~~~~~~~args~~~~~~~~~~~~~~")
+    if args.use_cross_entropy_loss:
+        print("cross")
+    else:
+        print("C&W")
+    if args.targeted_attack:
+        print("targeted")
+    else:
+        print("untargeted")
+    print("alpha:"+args.alpha)
+    print("beta:"+args.beta)
+    print("gamma:"+args.gamma)
+    
     ## create a session
     tf.set_random_seed(12345) # ensure consistent results
     succ = 0
