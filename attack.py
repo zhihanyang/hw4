@@ -44,9 +44,9 @@ class Attack():
     def cross_entropy_loss(self, ground_truth, target, logits, is_targeted_attack):
         # TODO: loss definition for both untargeted attack and targeted attack
         if is_targeted_attack:
-            loss = tf.nn.softmax_cross_entropy_with_logits(logits=logits,labels=target)
+            loss = tf.nn.sparse_softmax_cross_entropy_with_logits(logits=logits,labels=target)
         else: 
-            loss = - tf.nn.sparse_softmax_cross_entropy_with_logits(logits=logits,labels=ground_truth)
+            loss = -tf.nn.sparse_softmax_cross_entropy_with_logits(logits=logits,labels=ground_truth)
         return loss
 
     def CW_attack_loss(self, ground_truth, target, logits, is_targeted_attack):

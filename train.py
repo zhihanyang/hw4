@@ -68,17 +68,9 @@ def main():
     train_writer = tf.summary.FileWriter(os.path.join(config.log_dir, 'tf_log', 'train'), tf.get_default_graph())
 
     print("~~~~~~~~~~~~~~~args~~~~~~~~~~~~~~")
-    if args.use_cross_entropy_loss:
-        print("cross")
-    else:
-        print("C&W")
-    if args.targeted_attack:
-        print("targeted")
-    else:
-        print("untargeted")
-    print("alpha:",args.alpha)
-    print("beta:",args.beta)
-    print("gamma:",args.gamma)
+    for attr in dir(args):
+        if not attr.startswith("_"):
+            print("{}: {}".format(attr, getattr(args, attr)))
     
     ## create a session
     tf.set_random_seed(12345) # ensure consistent results
