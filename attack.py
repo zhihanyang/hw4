@@ -52,7 +52,9 @@ class Attack():
     def CW_attack_loss(self, ground_truth, target, logits, is_targeted_attack):
         # TODO: loss definition for both untargeted attack and targeted attack
         if is_targeted_attack:
-            loss = 1
+            gt_one_hot = tf.cast(tf.one_hot(target, config.nr_class), dtype=tf.float32)
+            mat = tf.multiply(2*gt_one_hot-1,logits)
+            loss = tf.maximum(tf.reduce_max(tf.reduce_max(mat,1)+tf.reduce_min(mat,1),0), -self.CW_kappa)
         else: 
             gt_one_hot = tf.cast(tf.one_hot(ground_truth, config.nr_class), dtype=tf.float32)
             mat = tf.multiply(2*gt_one_hot-1,logits)
