@@ -34,6 +34,10 @@ def main():
     parser.add_argument("--targeted_attack", action='store_true')
     args = parser.parse_args()
 
+    print(args)
+    print("cross:"+args.use_cross_entropy_loss)
+    print("target:"+args.targeted_attack)
+    
     ## load dataset
     train_batch_gnr, train_set = get_dataset_batch(ds_name='train')
 
