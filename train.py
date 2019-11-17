@@ -76,9 +76,9 @@ def main():
         print("targeted")
     else:
         print("untargeted")
-    print("alpha:"+args.alpha)
-    print("beta:"+args.beta)
-    print("gamma:"+args.gamma)
+    print("alpha:",args.alpha)
+    print("beta:",args.beta)
+    print("gamma:",args.gamma)
     
     ## create a session
     tf.set_random_seed(12345) # ensure consistent results
