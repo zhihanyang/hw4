@@ -1,0 +1,3 @@
+custom_vgg中删掉了dropout
+更新pdf中的表格
+train.py中更新了一个bug，计算noise时应该除以succ而不是tot
